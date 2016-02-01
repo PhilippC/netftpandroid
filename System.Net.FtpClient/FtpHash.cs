@@ -71,12 +71,22 @@ namespace System.Net.FtpClient {
                         hashAlg = new SHA1CryptoServiceProvider();
                         break;
 #if !NET2
+
+#if !ANDROID
                     case FtpHashAlgorithm.SHA256:
                         hashAlg = new SHA256CryptoServiceProvider();
                         break;
                     case FtpHashAlgorithm.SHA512:
                         hashAlg = new SHA512CryptoServiceProvider();
                         break;
+#else
+					case FtpHashAlgorithm.SHA256:
+						hashAlg = SHA256.Create();
+						break;
+					case FtpHashAlgorithm.SHA512:
+						hashAlg = SHA512.Create();
+						break;
+#endif
 #endif
                     case FtpHashAlgorithm.MD5:
                         hashAlg = new MD5CryptoServiceProvider();
