@@ -200,7 +200,7 @@ namespace System.Net.FtpClient {
             }
         }
 
-        bool m_isClone = false;
+        protected bool m_isClone = false;
         /// <summary>
         /// Gets a value indicating if this control connection is a clone. This property
         /// is used with data streams to determine if the connection should be closed
@@ -623,7 +623,7 @@ namespace System.Net.FtpClient {
         /// </summary>
         /// <returns>A new control connection with the same property settings as this one</returns>
         /// <example><code source="..\Examples\CloneConnection.cs" lang="cs" /></example>
-        protected FtpClient CloneConnection() {
+        protected virtual FtpClient CloneConnection() {
             FtpClient conn = new FtpClient();
 
             conn.m_isClone = true;
@@ -3481,7 +3481,7 @@ namespace System.Net.FtpClient {
         /// Used internally to mark properties in the control connection that
         /// should be cloned when opening a data connection.
         /// </summary>
-        sealed class FtpControlConnectionClone : Attribute {
+        protected sealed class FtpControlConnectionClone : Attribute {
         }
     }
 }
